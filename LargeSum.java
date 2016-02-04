@@ -1,3 +1,9 @@
+/*
+ * By: Alex Massenzio & Matthew Gomez
+ * LargeSum.java
+ * I pledge my honor that I have abided by the Stevens Honor System.
+ */
+
 import java.io.*;
 import java.util.Scanner;
 public class LargeSum {
@@ -8,7 +14,7 @@ public class LargeSum {
 		File file = new File(fileName);
 		short[][] numbers = new short[200][50];
 		short[] sum = new short[250];
-		short i = 0, j = 0, carry = 0;
+		short i = 0, j = 0, carry = 0, lrgDigit = 0;
 
 		//File I/O
 		try {
@@ -31,14 +37,38 @@ public class LargeSum {
 		}
 		//Adding stuff here
 		i = 249;
-		j = 0;
-		for(int k = 0; k < numbers.length; k++) {
-			if(sum[i] + numbers[k][j] <= 9) {
-				sum[i] += numbers[k][j];
+		for(j = 49; j >= 0; j--) {
+			for(int k = 0; k < numbers.length; k++) {
+				carry += numbers[k][j];
 			}
-			else {
-				//There is a carry
-			}
+			//System.out.println("Before = " + carry);
+			sum[i] = (short)(carry % 10);
+			carry = (short)(carry - sum[i]);
+			//System.out.println("Digit = " + sum[i]);
+			//System.out.println("Carry = " + carry + '\n');
+			i--;
+		}
+		//Finds the greatest number or if sum is 0, whatever comes first.
+		for(i = 0; sum[i] == 0 && i < sum.length; i++);
+		i--;
+		
+		while(carry > 0){
+			carry /= 10;
+			sum[i--] += (short)(carry % 10);
+		}
+		
+		for(i = 0; sum[i] == 0 && i < sum.length; i++);
+		lrgDigit = (short)(i);
+		
+		//Prints the number in the correct format given.
+		for(i = lrgDigit; i < sum.length; i++){
+			System.out.print(sum[i]);
+		}
+		
+		System.out.print('\n');
+		
+		for(i = lrgDigit; i < (10 + lrgDigit) && i < sum.length; i++){
+			System.out.print(sum[i]);
 		}
 	}
 }
