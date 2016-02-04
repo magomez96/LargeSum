@@ -60,13 +60,14 @@ public class LargeSum {
 		for(i = 0; sum[i] == 0 && i < sum.length; i++);
 		lrgDigit = (short)(i);
 		
+		System.out.print("Full sum: ");
 		//Prints the number in the correct format given.
 		for(i = lrgDigit; i < sum.length; i++){
 			System.out.print(sum[i]);
 		}
 		
 		System.out.print('\n');
-		
+		System.out.print("First 10 digits: ");
 		for(i = lrgDigit; i < (10 + lrgDigit) && i < sum.length; i++){
 			System.out.print(sum[i]);
 		}
