@@ -19,7 +19,7 @@ public class LargeSum {
 		//File I/O
 		try {
 			Scanner scan = new Scanner(file);
-			while(scan.hasNextLine()) {
+			while(scan.hasNext()) {
 				num = scan.next();
 				//String to 2D array of shorts
 				for(int k = num.length() - 1; k >= 0; k--) {
@@ -41,11 +41,11 @@ public class LargeSum {
 			for(int k = 0; k < numbers.length; k++) {
 				carry += numbers[k][j];
 			}
-			//System.out.println("Before = " + carry);
+			System.out.println("Before = " + carry);
 			sum[i] = (short)(carry % 10);
 			carry = (short)(carry - sum[i]);
-			//System.out.println("Digit = " + sum[i]);
-			//System.out.println("Carry = " + carry + '\n');
+			System.out.println("Digit = " + sum[i]);
+			System.out.println("Carry = " + carry + '\n');
 			i--;
 		}
 		//Finds the greatest number or if sum is 0, whatever comes first.
